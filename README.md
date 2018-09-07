@@ -10,6 +10,34 @@ Insertion ordered map implementation in golang.
 [![CII Best Practices][CII-Image]][CII-URL]
 [![GoDoc][GoDoc-Image]][GoDoc-URL]
 
+## Install
+
+```bash
+go get github.com/goombaio/dag
+```
+
+You can also update an already installed version:
+
+```bash
+go get -u github.com/goombaio/dag
+```
+
+## Example of use
+
+```go
+package main
+
+import (
+    "github.com/goombaio/orderedmap"
+)
+
+func main() {
+    m := orderedmap.New()
+    m.Put("foo", "bar")
+    // ...
+}
+```
+
 ## License
 
 Copyright (c) 2018 Goomba project Authors.
