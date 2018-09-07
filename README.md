@@ -13,13 +13,13 @@ Insertion ordered map implementation in golang.
 ## Install
 
 ```bash
-go get github.com/goombaio/dag
+go get github.com/goombaio/orderedmap
 ```
 
 You can also update an already installed version:
 
 ```bash
-go get -u github.com/goombaio/dag
+go get -u github.com/goombaio/orderedmap
 ```
 
 ## Example of use
