@@ -36,7 +36,7 @@ limitations under the License.
 [Coverage-URL]: https://codecov.io/gh/goombaio/orderedmap
 [GoReportCard-Image]: https://goreportcard.com/badge/github.com/goombaio/orderedmap
 [GoReportCard-URL]: https://goreportcard.com/report/github.com/goombaio/orderedmap
-[CII-Image]: https://bestpractices.coreinfrastructure.org/projects/2177/badge
-[CII-URL]: https://bestpractices.coreinfrastructure.org/projects/2177
+[CII-Image]: https://bestpractices.coreinfrastructure.org/projects/2183/badge
+[CII-URL]: https://bestpractices.coreinfrastructure.org/projects/2183
 [GoDoc-Image]: https://godoc.org/github.com/goombaio/orderedmap?status.svg
 [GoDoc-URL]: http://godoc.org/github.com/goombaio/orderedmap
