@@ -26,5 +26,4 @@ jobs:
       - run: make dev-deps
       - run: make test
       - run: make cover-profile
-      - run: make lint
       - run: bash <(curl -s https://codecov.io/bash)
