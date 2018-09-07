@@ -1,6 +1,6 @@
 include Makefile.help.mk
 
-BINARY=orderedset
+BINARY=orderedmap
 MAIN_PACKAGE=cmd/${BINARY}/main.go
 PACKAGES = $(shell go list ./...)
 VERSION=`cat VERSION`

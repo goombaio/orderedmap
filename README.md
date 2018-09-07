@@ -1,6 +1,6 @@
-# orderedset
+# orderedmap
 
-Insertion ordered set implementation in golang.
+Insertion ordered map implementation in golang.
 
 [![License][License-Image]][License-URL]
 [![FOSSA Status][FOSSA-Image]][FOSSA-URL]
@@ -13,13 +13,13 @@ Insertion ordered set implementation in golang.
 ## Install
 
 ```bash
-go get github.com/goombaio/orderedset
+go get github.com/goombaio/orderedmap
 ```
 
 You can also update an already installed version:
 
 ```bash
-go get -u github.com/goombaio/orderedset
+go get -u github.com/goombaio/orderedmap
 ```
 
 ## Example of use
@@ -28,11 +28,11 @@ go get -u github.com/goombaio/orderedset
 package main
 
 import (
-    "github.com/goombaio/orderedset"
+    "github.com/goombaio/orderedmap"
 )
 
 func main() {
-    m := orderedset.NewOrderedSet()
+    m := orderedmap.New()
     m.Put("foo", "bar")
     // ...
 }
@@ -56,15 +56,15 @@ limitations under the License.
 
 [License-Image]: https://img.shields.io/badge/License-Apache-blue.svg
 [License-URL]: http://opensource.org/licenses/Apache
-[FOSSA-Image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgoombaio%2Forderedset.svg?type=shield
-[FOSSA-URL]: https://app.fossa.io/projects/git%2Bgithub.com%2Fgoombaio%2Forderedset?ref=badge_shield
-[CircleCI-Image]: https://circleci.com/gh/goombaio/orderedset.svg?style=svg
-[CircleCI-URL]: https://circleci.com/gh/goombaio/orderedset
-[Coverage-Image]: https://codecov.io/gh/goombaio/orderedset/branch/master/graph/badge.svg
-[Coverage-URL]: https://codecov.io/gh/goombaio/orderedset
-[GoReportCard-Image]: https://goreportcard.com/badge/github.com/goombaio/orderedset
-[GoReportCard-URL]: https://goreportcard.com/report/github.com/goombaio/orderedset
+[FOSSA-Image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgoombaio%2Forderedmap.svg?type=shield
+[FOSSA-URL]: https://app.fossa.io/projects/git%2Bgithub.com%2Fgoombaio%2Forderedmap?ref=badge_shield
+[CircleCI-Image]: https://circleci.com/gh/goombaio/orderedmap.svg?style=svg
+[CircleCI-URL]: https://circleci.com/gh/goombaio/orderedmap
+[Coverage-Image]: https://codecov.io/gh/goombaio/orderedmap/branch/master/graph/badge.svg
+[Coverage-URL]: https://codecov.io/gh/goombaio/orderedmap
+[GoReportCard-Image]: https://goreportcard.com/badge/github.com/goombaio/orderedmap
+[GoReportCard-URL]: https://goreportcard.com/report/github.com/goombaio/orderedmap
 [CII-Image]: https://bestpractices.coreinfrastructure.org/projects/2183/badge
 [CII-URL]: https://bestpractices.coreinfrastructure.org/projects/2183
-[GoDoc-Image]: https://godoc.org/github.com/goombaio/orderedset?status.svg
-[GoDoc-URL]: http://godoc.org/github.com/goombaio/orderedset
+[GoDoc-Image]: https://godoc.org/github.com/goombaio/orderedmap?status.svg
+[GoDoc-URL]: http://godoc.org/github.com/goombaio/orderedmap
