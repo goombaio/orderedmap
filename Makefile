@@ -48,11 +48,6 @@ cover-html:		## Generate coverage report
 codecov:
 	bash <(curl -s https://codecov.io/bash)
 
-# Lint
-
-lint:			## Lint source code
-	gometalinter --disable-all --enable=errcheck --enable=vet --enable=vetshadow
-
 # Dependencies
 
 deps:			## Install build dependencies
@@ -61,7 +56,6 @@ deps:			## Install build dependencies
 
 dev-deps: deps
 dev-deps:		## Install dev and build dependencies
-	gometalinter --install
 
 .PHONY: clean
 clean:			## Delete generated development environment
