@@ -56,11 +56,11 @@ lint:			## Lint source code
 # Dependencies
 
 deps:			## Install build dependencies
-	go get -u github.com/google/uuid
+	go mod download
+	go mod verify
 
 dev-deps: deps
 dev-deps:		## Install dev and build dependencies
-	go get -u github.com/alecthomas/gometalinter
 	gometalinter --install
 
 .PHONY: clean
