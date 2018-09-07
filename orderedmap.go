@@ -57,7 +57,7 @@ func (m *OrderedMap) Get(key interface{}) (value interface{}, found bool) {
 	defer m.Unlock()
 
 	value, found = m.store[key]
-	return
+	return value, found
 }
 
 // Remove remove a key-value pair from the OrderedMap
