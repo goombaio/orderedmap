@@ -18,6 +18,7 @@
 package orderedmap_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/goombaio/orderedmap"
@@ -174,6 +175,18 @@ func TestOrderedMap_Values(t *testing.T) {
 	expectedValues := []interface{}{"e", "f", "g", "c", "d", "a", "b", structValue, &structValue, false}
 	if !sameElements(actualValues, expectedValues) {
 		t.Errorf("Got %v expected %v", actualValues, expectedValues)
+	}
+}
+
+func TestOrderedMap_String(t *testing.T) {
+	m := orderedmap.NewOrderedMap()
+	m.Put(1, "foo")
+	m.Put(2, "bar")
+
+	expected := "[1:foo 2:bar]"
+	result := fmt.Sprintf("%s", m.String())
+	if expected != result {
+		t.Fatalf("Got %q expected %q", result, expected)
 	}
 }
 

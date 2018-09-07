@@ -18,6 +18,7 @@
 package orderedmap
 
 import (
+	"fmt"
 	"sync"
 )
 
@@ -113,4 +114,14 @@ func (m *OrderedMap) Size() int {
 	defer m.Unlock()
 
 	return len(m.store)
+}
+
+// String implements Stringer for this instance
+func (m *OrderedMap) String() string {
+	var result []string
+	for i, key := range m.keys {
+		result = append(result, fmt.Sprintf("%d:%s", m.keys[i].(int), m.store[key]))
+	}
+
+	return fmt.Sprintf("%s", result)
 }
