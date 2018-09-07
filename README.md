@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-    m := orderedmap.New()
+    m := orderedmap.NewOrderedMap()
     m.Put("foo", "bar")
     // ...
 }
