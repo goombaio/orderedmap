@@ -40,6 +40,24 @@ func TestOrderedMap_Put(t *testing.T) {
 	m.Put(structKey, structValue)
 	m.Put(&structKey, &structValue)
 	m.Put(true, false)
+}
+
+func TestOrderedMap_Get(t *testing.T) {
+	m := orderedmap.NewOrderedMap()
+	m.Put(5, "e")
+	m.Put(6, "f")
+	m.Put(7, "g")
+	m.Put(3, "c")
+	m.Put(4, "d")
+	m.Put(1, "x")
+	m.Put(2, "b")
+	m.Put(1, "a") //overwrite
+	m.Put(2, "b")
+	structKey := complexType{"skey"}
+	structValue := complexType{"svalue"}
+	m.Put(structKey, structValue)
+	m.Put(&structKey, &structValue)
+	m.Put(true, false)
 
 	table := []struct {
 		key           interface{}
@@ -65,10 +83,6 @@ func TestOrderedMap_Put(t *testing.T) {
 			t.Errorf("Got %v expected %v", actualValue, test.expectedValue)
 		}
 	}
-}
-
-func TestOrderedMap_Get(t *testing.T) {
-	TestOrderedMap_Put(t)
 }
 
 func TestOrderedMap_Remove(t *testing.T) {
