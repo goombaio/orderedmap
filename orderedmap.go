@@ -66,18 +66,29 @@ func (m *OrderedMap) Remove(key interface{}) {
 	m.Lock()
 	defer m.Unlock()
 
+	// Check key exists
 	if _, found := m.store[key]; !found {
 		return
 	}
 
+	// Remove the value from the store
 	delete(m.store, key)
 
+	// Remove the key
 	for i := range m.keys {
 		if m.keys[i] == key {
 			m.keys = append(m.keys[:i], m.keys[i+1:]...)
 			break
 		}
 	}
+}
+
+// Size return the size of the OrderedMap
+func (m *OrderedMap) Size() int {
+	m.Lock()
+	defer m.Unlock()
+
+	return len(m.store)
 }
 
 // Empty return if the OrderedMap in empty or not
@@ -106,14 +117,6 @@ func (m *OrderedMap) Values() []interface{} {
 		values[i] = m.store[key]
 	}
 	return values
-}
-
-// Size return the size of the OrderedMap
-func (m *OrderedMap) Size() int {
-	m.Lock()
-	defer m.Unlock()
-
-	return len(m.store)
 }
 
 // String implements Stringer for this instance
