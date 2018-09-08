@@ -48,6 +48,12 @@ cover-html:		## Generate coverage report
 codecov:
 	bash <(curl -s https://codecov.io/bash)
 
+# BenchMarking
+
+.PHONY: benchmark
+benchmark:		## Execute package benchmarks 
+	go test -v $(PACKAGES) -benchmem -bench .  
+
 # Dependencies
 
 deps:			## Install build dependencies
