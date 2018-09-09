@@ -33,8 +33,17 @@ import (
 
 func main() {
     m := orderedmap.NewOrderedMap()
-    m.Put("foo", "bar")
-    // ...
+    m.Put("one", "First element")
+    m.Put("two", "Second element")
+    m.Put("three", "Last element")
+
+    for _, entry := range m.Values() {
+        fmt.Println(entry)
+    }
+    // Output:
+    // First element
+    // Second element
+    // Last element
 }
 ```
 
