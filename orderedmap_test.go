@@ -24,8 +24,13 @@ import (
 	"github.com/goombaio/orderedmap"
 )
 
+type customType struct {
+	foo string
+}
+
 func TestOrderedMap_Put(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
+
 	m.Put(5, "e")
 	m.Put(6, "f")
 	m.Put(7, "g")
@@ -33,17 +38,33 @@ func TestOrderedMap_Put(t *testing.T) {
 	m.Put(4, "d")
 	m.Put(1, "x")
 	m.Put(2, "b")
+
 	m.Put(1, "a") //overwrite
 	m.Put(2, "b")
-	structKey := complexType{"skey"}
-	structValue := complexType{"svalue"}
+
+	structKey := customType{"skey"}
+	structValue := customType{"svalue"}
 	m.Put(structKey, structValue)
 	m.Put(&structKey, &structValue)
+
 	m.Put(true, false)
+}
+
+func TestOrderedMap_Put_overwrite(t *testing.T) {
+	m := orderedmap.NewOrderedMap()
+
+	m.Put(1, "x")
+	m.Put(1, "a") //overwrite
+
+	actualValue, actualFound := m.Get(1)
+	if actualValue != "a" || actualFound != true {
+		t.Errorf("Got %v expected %v", actualValue, true)
+	}
 }
 
 func TestOrderedMap_Get(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
+
 	m.Put(5, "e")
 	m.Put(6, "f")
 	m.Put(7, "g")
@@ -51,12 +72,15 @@ func TestOrderedMap_Get(t *testing.T) {
 	m.Put(4, "d")
 	m.Put(1, "x")
 	m.Put(2, "b")
+
 	m.Put(1, "a") //overwrite
 	m.Put(2, "b")
-	structKey := complexType{"skey"}
-	structValue := complexType{"svalue"}
+
+	structKey := customType{"skey"}
+	structValue := customType{"svalue"}
 	m.Put(structKey, structValue)
 	m.Put(&structKey, &structValue)
+
 	m.Put(true, false)
 
 	table := []struct {
@@ -124,6 +148,7 @@ func TestOrderedMap_Empty(t *testing.T) {
 
 func TestOrderedMap_Size(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
+
 	m.Put(5, "e")
 	m.Put(6, "f")
 	m.Put(7, "g")
@@ -131,12 +156,15 @@ func TestOrderedMap_Size(t *testing.T) {
 	m.Put(4, "d")
 	m.Put(1, "x")
 	m.Put(2, "b")
+
 	m.Put(1, "a") //overwrite
 	m.Put(2, "b")
-	structKey := complexType{"skey"}
-	structValue := complexType{"svalue"}
+
+	structKey := customType{"skey"}
+	structValue := customType{"svalue"}
 	m.Put(structKey, structValue)
 	m.Put(&structKey, &structValue)
+
 	m.Put(true, false)
 
 	if actualSize := m.Size(); actualSize != 10 {
@@ -146,6 +174,7 @@ func TestOrderedMap_Size(t *testing.T) {
 
 func TestOrderedMap_Keys(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
+
 	m.Put(5, "e")
 	m.Put(6, "f")
 	m.Put(7, "g")
@@ -153,12 +182,15 @@ func TestOrderedMap_Keys(t *testing.T) {
 	m.Put(4, "d")
 	m.Put(1, "x")
 	m.Put(2, "b")
+
 	m.Put(1, "a") //overwrite
 	m.Put(2, "b")
-	structKey := complexType{"skey"}
-	structValue := complexType{"svalue"}
+
+	structKey := customType{"skey"}
+	structValue := customType{"svalue"}
 	m.Put(structKey, structValue)
 	m.Put(&structKey, &structValue)
+
 	m.Put(true, false)
 
 	actualKeys := m.Keys()
@@ -170,6 +202,7 @@ func TestOrderedMap_Keys(t *testing.T) {
 
 func TestOrderedMap_Values(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
+
 	m.Put(5, "e")
 	m.Put(6, "f")
 	m.Put(7, "g")
@@ -177,12 +210,15 @@ func TestOrderedMap_Values(t *testing.T) {
 	m.Put(4, "d")
 	m.Put(1, "x")
 	m.Put(2, "b")
+
 	m.Put(1, "a") //overwrite
 	m.Put(2, "b")
-	structKey := complexType{"skey"}
-	structValue := complexType{"svalue"}
+
+	structKey := customType{"skey"}
+	structValue := customType{"svalue"}
 	m.Put(structKey, structValue)
 	m.Put(&structKey, &structValue)
+
 	m.Put(true, false)
 
 	actualValues := m.Values()
@@ -202,10 +238,6 @@ func TestOrderedMap_String(t *testing.T) {
 	if expected != result {
 		t.Fatalf("Got %q expected %q", result, expected)
 	}
-}
-
-type complexType struct {
-	foo string
 }
 
 func sameElements(a []interface{}, b []interface{}) bool {
