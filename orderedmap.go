@@ -34,7 +34,7 @@ type OrderedMap struct {
 func NewOrderedMap() *OrderedMap {
 	m := &OrderedMap{
 		store: make(map[interface{}]interface{}),
-		keys:  make([]interface{}, 0, 0),
+		keys:  make([]interface{}, 0),
 	}
 
 	return m

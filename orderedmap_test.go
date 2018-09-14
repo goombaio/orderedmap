@@ -18,7 +18,6 @@
 package orderedmap_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/goombaio/orderedmap"
@@ -57,7 +56,7 @@ func TestOrderedMap_Put_overwrite(t *testing.T) {
 	m.Put(1, "a") //overwrite
 
 	actualValue, actualFound := m.Get(1)
-	if actualValue != "a" || actualFound != true {
+	if actualValue != "a" || !actualFound {
 		t.Errorf("Got %v expected %v", actualValue, true)
 	}
 }
@@ -135,13 +134,13 @@ func TestOrderedMap_Remove(t *testing.T) {
 func TestOrderedMap_Empty(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
 	actualValue := m.Empty()
-	if actualValue == false {
+	if !actualValue {
 		t.Errorf("Got %v expected %v", actualValue, true)
 	}
 
 	m.Put("foo", "bar")
 	actualValue = m.Empty()
-	if actualValue == true {
+	if actualValue {
 		t.Errorf("Got %v expected %v", actualValue, false)
 	}
 }
@@ -234,7 +233,7 @@ func TestOrderedMap_String(t *testing.T) {
 	m.Put(2, "bar")
 
 	expected := "[1:foo 2:bar]"
-	result := fmt.Sprintf("%s", m.String())
+	result := m.String()
 	if expected != result {
 		t.Fatalf("Got %q expected %q", result, expected)
 	}
