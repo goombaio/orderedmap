@@ -27,6 +27,18 @@ type customType struct {
 	foo string
 }
 
+func TestOrderedMap(t *testing.T) {
+	m := orderedmap.NewOrderedMap()
+
+	if !m.Empty() {
+		t.Fatalf("New map expected to be empty but it is not")
+	}
+
+	if m.Size() != 0 {
+		t.Fatalf("New map expected to have 0 elements but got %d", m.Size())
+	}
+}
+
 func TestOrderedMap_Put(t *testing.T) {
 	m := orderedmap.NewOrderedMap()
 

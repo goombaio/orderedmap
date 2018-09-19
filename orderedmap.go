@@ -22,28 +22,34 @@ import (
 	"sync"
 )
 
-// OrderedMap insertion ordered Map implementation
+// OrderedMap represents an associative array or map abstract data type.
 type OrderedMap struct {
-	sync.Mutex
+	// mu Mutex protects data structures below.
+	mu sync.Mutex
 
+	// keys is the Set list of keys.
+	keys []interface{}
+
+	// store is the Set underlying store of values.
 	store map[interface{}]interface{}
-	keys  []interface{}
 }
 
-// NewOrderedMap return a new Map implemented by OrderedMap
+// NewOrderedMap creates a new empty OrderedMap.
 func NewOrderedMap() *OrderedMap {
 	m := &OrderedMap{
-		store: make(map[interface{}]interface{}),
 		keys:  make([]interface{}, 0),
+		store: make(map[interface{}]interface{}),
 	}
 
 	return m
 }
 
-// Put add a key-value pair to the OrderedMap
+// Put adds items to the map.
+//
+// If a key is found in the map it replaces it value.
 func (m *OrderedMap) Put(key interface{}, value interface{}) {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	if _, ok := m.store[key]; !ok {
 		m.keys = append(m.keys, key)
@@ -52,19 +58,21 @@ func (m *OrderedMap) Put(key interface{}, value interface{}) {
 	m.store[key] = value
 }
 
-// Get return the value of a key from the OrderedMap
+// Get returns the value of a key from the OrderedMap.
 func (m *OrderedMap) Get(key interface{}) (value interface{}, found bool) {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	value, found = m.store[key]
 	return value, found
 }
 
-// Remove remove a key-value pair from the OrderedMap
+// Remove deletes a key-value pair from the OrderedMap.
+//
+// If a key is not found in the map it doesn't fails, just does nothing.
 func (m *OrderedMap) Remove(key interface{}) {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	// Check key exists
 	if _, found := m.store[key]; !found {
@@ -83,34 +91,34 @@ func (m *OrderedMap) Remove(key interface{}) {
 	}
 }
 
-// Size return the size of the OrderedMap
+// Size return the map number of key-value pairs.
 func (m *OrderedMap) Size() int {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	return len(m.store)
 }
 
-// Empty return if the OrderedMap in empty or not
+// Empty return if the map in empty or not.
 func (m *OrderedMap) Empty() bool {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	return len(m.store) == 0
 }
 
-// Keys return the keys of the OrderedMap in insertion order
+// Keys return the keys in the map in insertion order.
 func (m *OrderedMap) Keys() []interface{} {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	return m.keys
 }
 
-// Values return the values of the OrderedMap in insertion order
+// Values return the values in the map in insertion order.
 func (m *OrderedMap) Values() []interface{} {
-	m.Lock()
-	defer m.Unlock()
+	m.mu.Lock()
+	defer m.mu.Unlock()
 
 	values := make([]interface{}, len(m.store))
 	for i, key := range m.keys {
@@ -119,8 +127,14 @@ func (m *OrderedMap) Values() []interface{} {
 	return values
 }
 
-// String implements Stringer for this instance
+// String implements Stringer interface.
+//
+// Prints the map string representation, a concatenated string of all its
+// string representation values in insertion order.
 func (m *OrderedMap) String() string {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
 	var result []string
 	for i, key := range m.keys {
 		result = append(result, fmt.Sprintf("%d:%s", m.keys[i].(int), m.store[key]))
