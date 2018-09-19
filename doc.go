@@ -26,7 +26,7 @@ once, and, every key can only have one value.
 An insertion-ordered map have the extra property that when it is iterated it
 returns their values in order they where inserted originally.
 
-Examples:
+Example
 
 	package main
 
