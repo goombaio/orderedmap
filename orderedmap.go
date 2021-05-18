@@ -25,7 +25,7 @@ import (
 // OrderedMap represents an associative array or map abstract data type.
 type OrderedMap struct {
 	// mu Mutex protects data structures below.
-	mu sync.Mutex
+	mu sync.RWMutex
 
 	// keys is the Set list of keys.
 	keys []interface{}
@@ -60,8 +60,8 @@ func (m *OrderedMap) Put(key interface{}, value interface{}) {
 
 // Get returns the value of a key from the OrderedMap.
 func (m *OrderedMap) Get(key interface{}) (value interface{}, found bool) {
-	m.mu.Lock()
-	defer m.mu.Unlock()
+	m.mu.RLock()
+	defer m.mu.RUnlock()
 
 	value, found = m.store[key]
 	return value, found
