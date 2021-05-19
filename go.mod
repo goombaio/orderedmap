@@ -1,1 +1,3 @@
-module github.com/goombaio/orderedmap
+module github.com/shiyuleixia/orderedmap
+
+go 1.15
